@@ -14,6 +14,7 @@ import {ButtonModule} from 'primeng/button';
 import {AccordionModule} from 'primeng/accordion';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CalendarModule} from 'primeng/calendar';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {CalendarModule} from 'primeng/calendar';
     ButtonModule,
     AccordionModule,
     InputTextareaModule,
-    CalendarModule
+    CalendarModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent]

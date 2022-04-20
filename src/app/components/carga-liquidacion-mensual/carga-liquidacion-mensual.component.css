@@ -8,12 +8,23 @@
 
 .miniBoton {
     margin: 2px 2px;
-    padding: 5px 15px;
+    padding: 0px 15px;
     font-size: small;
 }
 
 .centrar {
     text-align: center;
+}
+
+.agregarRetencion {
+    text-align: center;
+    font-size: 12px;
+    padding: 2px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    width: 80%;
+    color: rgb(74, 153, 255);
 }
 
 #observacionesCliente {

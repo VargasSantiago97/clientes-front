@@ -22,6 +22,12 @@ export class CargaLiquidacionMensualComponent implements OnInit {
 
   fecha : any;
 
+  facturacionAct1: number = 42723;
+  facturacionAct2: number = 42724;
+  facturacionAct3: number = 42725;
+
+  totalFacturacion: number = 0;
+
   constructor(private route: ActivatedRoute) {
 
   }
@@ -40,13 +46,15 @@ export class CargaLiquidacionMensualComponent implements OnInit {
       cuit : '20405003644',
       afip : '0407Santiago',
       atp : 'ClaveATP',
-      cuitGuion : '20-40500364-4'
+      cuitGuion : '20-40500364-4',
+      CUR: '123123'
     }
 
     this.observacionesCliente = '...\n...\n...';
 
     this.fecha = new Date('Wed Apr 15 2022 01:02:36 GMT-0300');
-    console.log(this.fecha)
+    
+    this.calcularFacturacionTotal();
 
   }
 
@@ -68,6 +76,12 @@ export class CargaLiquidacionMensualComponent implements OnInit {
     }
     document.body.removeChild(txtArea);
     return false;
+  }
+
+  calcularFacturacionTotal(){
+    setTimeout( () => {
+      this.totalFacturacion = this.facturacionAct1 + this.facturacionAct2 + this.facturacionAct3;
+    } ,10)
   }
 
 

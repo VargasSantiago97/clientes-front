@@ -1,8 +1,8 @@
 
 <!-- DATOS PRINCIPALES DEL CLIENTE EN CABEZA -->
-<h3 class="quitarMargenes tAC">{{aliasCliente}}</h3>
+<h5 class="quitarMargenes tAC">{{aliasCliente}}</h5>
 <hr class="quitarMargenes">
-<h4 class="quitarMargenes tAC">{{cuitCliente}}</h4>
+<h6 class="quitarMargenes tAC">{{cuitCliente}}</h6>
 
 
 <!-- COPIAR CUIT Y CONTRASEÑAS -->
@@ -17,35 +17,154 @@
 
 <hr class="quitarMargenes">
 
+<div class="centrar">
+    <p-calendar [(ngModel)]="fecha" dateFormat="dd/mm/y"></p-calendar>
+</div>
+<br>
 
 <p-accordion [multiple]="true">
-    <p-accordionTab header="Fecha" [selected]="true">
-        <p-calendar [(ngModel)]="fecha" [inline]="true"></p-calendar>
-    </p-accordionTab>
-    <p-accordionTab header="Datos Monotributo" [selected]="true">
-        -Cat: A
+
+    <p-accordionTab header="Datos Monotributo" [selected]="false">
+        <div class="row">
+            <div class="col">
+              -Categoria:
+            </div>
+            <div class="col">
+              <b>A</b>
+            </div>
+        </div>
+        <div class="row" (click)="copiarAlPortapapeles('CUR')">
+            <div class="col">
+              -CUR:
+            </div>
+            <div class="col">
+              <b>123123</b>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+              -Impuesto:
+            </div>
+            <div class="col">
+              $5.215
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              -SIPA:
+            </div>
+            <div class="col">
+              $5.215
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              -O. Social:
+            </div>
+            <div class="col">
+              $5.215
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              TOTAL
+            </div>
+            <div class="col">
+              <b>$5.215</b>
+            </div>
+        </div>
         <br>
-        -CUR: 123123
-        <br>
-        -Modificar
+        <div class="centrar">
+            <button pButton type="button" label="EDITAR" class="p-button-warning p-button-sm"></button>
+        </div>
     </p-accordionTab>
     <p-accordionTab header="Facturacion" [selected]="true">
-        -Act 1
-        <br>
-        -Act 2
-        <br>
-        -Act 3
-        <br>
-        -TOTAL
+        <div class="row">
+            <div class="col">
+              -Act 1:
+            </div>
+            <div class="col">
+                <p-inputNumber (ngModelChange)="calcularFacturacionTotal()" [(ngModel)]="facturacionAct1" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
+                </p-inputNumber>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              -Act 2:
+            </div>
+            <div class="col">
+                <p-inputNumber (ngModelChange)="calcularFacturacionTotal()" [(ngModel)]="facturacionAct2" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
+                </p-inputNumber>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              -Act 3:
+            </div>
+            <div class="col">
+                <p-inputNumber (ngModelChange)="calcularFacturacionTotal()" [(ngModel)]="facturacionAct3" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
+                </p-inputNumber>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              <b>-TOTAL:</b>
+            </div>
+            <div class="col">
+                <p-inputNumber [ngModel]="totalFacturacion" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
+                </p-inputNumber>
+            </div>
+        </div>
+        <hr>
+        <p style="color: rgb(119, 119, 119);">Periodo anterior:</p>
+
+        <div class="row">
+          <div class="col">
+            -Act 1:
+          </div>
+          <div class="col">
+            $0.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            -Act 2:
+          </div>
+          <div class="col">
+            $0.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            -Act 3:
+          </div>
+          <div class="col">
+            $0.00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>-TOTAL:</b>
+          </div>
+          <div class="col">
+            <b>$0.00</b>
+          </div>
+        </div>
     </p-accordionTab>
     <p-accordionTab header="Retenciones" [selected]="true">
-        -SIRCREB
-        <br>
-        -...
-        <br>
-        -...
-        <br>
-        -...
+      <h6>SIRCREB: <b>$5.55</b></h6>
+      <i class="pi pi-plus agregarRetencion"></i>
+      <hr>
+      <h6>SIRCAR:</h6>
+      <hr>
+      <h6>SIRTAC RET.:</h6>
+      <hr>
+      <h6>SIRTAC PER.:</h6>
+      <hr>
+      <h6>ATP RET.:</h6>
+      <hr>
+      <h6>ATP PER.:</h6>
     </p-accordionTab>
     <p-accordionTab header="ATP DDJJ IIBB" [selected]="true">
         -SIRCREB
