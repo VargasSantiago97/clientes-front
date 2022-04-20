@@ -1,0 +1,22 @@
+.quitarMargenes {
+    margin: 2px;
+}
+
+.tAC {
+    text-align: center;
+}
+
+.miniBoton {
+    margin: 2px 5px;
+    padding: 1px 10px;
+    font-size: small;
+}
+
+.centrar {
+    text-align: center;
+}
+
+#observacionesCliente {
+    width: 100%;
+    resize: vertical;
+}

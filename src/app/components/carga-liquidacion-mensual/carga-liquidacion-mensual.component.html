@@ -1,0 +1,112 @@
+
+<!-- DATOS PRINCIPALES DEL CLIENTE EN CABEZA -->
+<h3 class="quitarMargenes tAC">{{aliasCliente}}</h3>
+<hr class="quitarMargenes">
+<h4 class="quitarMargenes tAC">{{cuitCliente}}</h4>
+
+
+<!-- COPIAR CUIT Y CONTRASEÑAS -->
+<div class="centrar">
+    <button (click)="copiarAlPortapapeles('cuit')" (dblclick)="copiarAlPortapapeles('cuitGuion')" pButton type="button" label="CUIT" class="miniBoton p-button-warning"></button>
+    <button (click)="copiarAlPortapapeles('afip')" pButton type="button" label="AFIP" class="miniBoton p-button-primary"></button>
+    <button (click)="copiarAlPortapapeles('atp')" pButton type="button" label="ATP" class="miniBoton p-button-success"></button>
+</div>
+
+
+<textarea id="observacionesCliente" pInputTextarea [(ngModel)]="observacionesCliente"></textarea>
+
+<hr class="quitarMargenes">
+
+
+<p-accordion [multiple]="true">
+    <p-accordionTab header="Fecha" [selected]="true">
+        <p-calendar [(ngModel)]="fecha" [inline]="true"></p-calendar>
+    </p-accordionTab>
+    <p-accordionTab header="Datos Monotributo" [selected]="true">
+        -Cat: A
+        <br>
+        -CUR: 123123
+        <br>
+        -Modificar
+    </p-accordionTab>
+    <p-accordionTab header="Facturacion" [selected]="true">
+        -Act 1
+        <br>
+        -Act 2
+        <br>
+        -Act 3
+        <br>
+        -TOTAL
+    </p-accordionTab>
+    <p-accordionTab header="Retenciones" [selected]="true">
+        -SIRCREB
+        <br>
+        -...
+        <br>
+        -...
+        <br>
+        -...
+    </p-accordionTab>
+    <p-accordionTab header="ATP DDJJ IIBB" [selected]="true">
+        -SIRCREB
+        <br>
+        -...
+        <br>
+        -...
+        <br>
+        -...
+    </p-accordionTab>
+    <p-accordionTab header="Archivos" [selected]="true">
+        -...
+        <br>
+        -...
+        <br>
+        -...
+        <br>
+        -...
+    </p-accordionTab>
+    <p-accordionTab header="Detalle" [selected]="true">
+        -...
+        <br>
+        -...
+        <br>
+        -...
+        <br>
+        -...
+    </p-accordionTab>
+    <p-accordionTab header="Opciones detalle" [selected]="true">
+        -...
+        <br>
+        -...
+        <br>
+        -...
+        <br>
+        -...
+    </p-accordionTab>
+
+    <textarea id="observacionesCliente" pInputTextarea [(ngModel)]="observacionesCliente"></textarea>
+
+</p-accordion>
+
+
+
+
+<ul>
+    <li><a [routerLink]="['/cargaLiquidacion', 1, 'a']">1a</a></li>
+    <li><a [routerLink]="['/cargaLiquidacion', 2, 'b']">2b</a></li>
+    <li><a [routerLink]="['/cargaLiquidacion', 3, 'c']">3c</a></li>
+</ul>
+<ul>
+    <li><a href="/cargaLiquidacion/1/a">1a</a></li>
+    <li><a href="/cargaLiquidacion/2/b">2b</a></li>
+    <li><a href="/cargaLiquidacion/3/c">3c</a></li>
+</ul>
+
+<ul>
+    <li>
+        Cliente: {{idCliente}}
+    </li>
+    <li>
+        Periodo: {{idPeriodo}}
+    </li>
+</ul>
