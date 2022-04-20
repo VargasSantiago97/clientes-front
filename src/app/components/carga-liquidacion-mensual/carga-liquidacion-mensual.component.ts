@@ -19,6 +19,7 @@ export class CargaLiquidacionMensualComponent implements OnInit {
 
 
   observacionesCliente : string = '';
+  observacionesLiquidacion : string = 'Nada';
 
   fecha : any;
 
@@ -27,6 +28,8 @@ export class CargaLiquidacionMensualComponent implements OnInit {
   facturacionAct3: number = 42725;
 
   totalFacturacion: number = 0;
+
+  uploadedFiles: any[] = [];
 
   constructor(private route: ActivatedRoute) {
 
@@ -50,7 +53,7 @@ export class CargaLiquidacionMensualComponent implements OnInit {
       CUR: '123123'
     }
 
-    this.observacionesCliente = '...\n...\n...';
+    this.observacionesCliente = '...';
 
     this.fecha = new Date('Wed Apr 15 2022 01:02:36 GMT-0300');
     
@@ -83,6 +86,16 @@ export class CargaLiquidacionMensualComponent implements OnInit {
       this.totalFacturacion = this.facturacionAct1 + this.facturacionAct2 + this.facturacionAct3;
     } ,10)
   }
+
+  agregarRet(){
+    alert('Agregar ret');
+  }
+
+  onUpload(event:any) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+}
 
 
 

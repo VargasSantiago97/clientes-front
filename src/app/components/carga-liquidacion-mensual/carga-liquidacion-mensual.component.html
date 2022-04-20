@@ -22,7 +22,7 @@
 </div>
 <br>
 
-<p-accordion [multiple]="true">
+<p-accordion [multiple]="false">
 
     <p-accordionTab header="Datos Monotributo" [selected]="false">
         <div class="row">
@@ -79,7 +79,7 @@
             <button pButton type="button" label="EDITAR" class="p-button-warning p-button-sm"></button>
         </div>
     </p-accordionTab>
-    <p-accordionTab header="Facturacion" [selected]="true">
+    <p-accordionTab header="Facturacion" [selected]="false">
         <div class="row">
             <div class="col">
               -Act 1:
@@ -144,38 +144,170 @@
           </div>
         </div>
         <div class="row">
-          <div class="col">
-            <b>-TOTAL:</b>
+            <div class="col">
+              <b>-TOTAL:</b>
+            </div>
+            <div class="col">
+              <b>$0.00</b>
+            </div>
           </div>
-          <div class="col">
-            <b>$0.00</b>
-          </div>
+    </p-accordionTab>
+    <p-accordionTab header="Retenciones" [selected]="false">
+            <div>
+                <h6><b>SIRCREB: $5.55</b></h6>
+                <div class="row renglonRet">
+                    <div class="col">
+                        BNA
+                    </div>
+                    <div class="col">
+                        <input type="number" style="width: 100px; height: 20px;">
+                    </div>
+                    <div class="col" style="color: rgba(104, 104, 104, 0.836); font-size: medium;">
+                        $500.00
+                        <i (click)="agregarRet()" class="pi pi-trash botonRetencion" style="color: rgba(211, 17, 17, 0.87);"></i>
+                        <i (click)="agregarRet()" class="pi pi-pencil botonRetencion"></i>
+                    </div>
+                </div>
+                <div class="row renglonRet">
+                    <div class="col">
+                        NBCH
+                    </div>
+                    <div class="col">
+                        <input type="number" style="width: 100px; height: 20px;">
+                    </div>
+                    <div class="col" style="color: rgba(104, 104, 104, 0.836); font-size: medium;">
+                        $500.00
+                        <i (click)="agregarRet()" class="pi pi-trash botonRetencion" style="color: rgba(211, 17, 17, 0.87);"></i>
+                        <i (click)="agregarRet()" class="pi pi-pencil botonRetencion"></i>
+                    </div>
+                </div>
+                <div class="centrar">
+                  <i (click)="agregarRet()" class="pi pi-plus agregarRetencion"></i>
+                </div>
+              </div>
+              <hr>
+          <h6>SIRCAR:</h6>
+        <hr>
+        <h6>SIRTAC RET.:</h6>
+        <hr>
+        <h6>SIRTAC PER.:</h6>
+        <hr>
+        <h6>ATP RET.:</h6>
+        <hr>
+        <h6>ATP PER.:</h6>
+    </p-accordionTab>
+    <p-accordionTab header="ATP DDJJ IIBB" [selected]="false">
+        <div>
+            <h6><b>Monto imponible: $5.55</b></h6>
+            <div class="row">
+                <div class="col">
+                    ACT 1
+                </div>
+                <div class="col">
+                    2000
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    ACT 2
+                </div>
+                <div class="col">
+                    2000
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    ACT 3
+                </div>
+                <div class="col">
+                    2000
+                </div>
+            </div>
         </div>
-    </p-accordionTab>
-    <p-accordionTab header="Retenciones" [selected]="true">
-      <h6>SIRCREB: <b>$5.55</b></h6>
-      <i class="pi pi-plus agregarRetencion"></i>
-      <hr>
-      <h6>SIRCAR:</h6>
-      <hr>
-      <h6>SIRTAC RET.:</h6>
-      <hr>
-      <h6>SIRTAC PER.:</h6>
-      <hr>
-      <h6>ATP RET.:</h6>
-      <hr>
-      <h6>ATP PER.:</h6>
-    </p-accordionTab>
-    <p-accordionTab header="ATP DDJJ IIBB" [selected]="true">
-        -SIRCREB
-        <br>
-        -...
-        <br>
-        -...
-        <br>
-        -...
+        <hr>
+        <div>
+            <h6><b>Saldo a favor: $5.55</b></h6>
+            <div class="row">
+                <div class="col">
+                    123.123
+                </div>
+                <div class="col">
+                    202201
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    12.31
+                </div>
+                <div class="col">
+                    202201
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h6><b>SIRCREB: $5.55</b></h6>
+            <div class="row">
+                <div class="col">
+                    BNA
+                </div>
+                <div class="col">
+                    2000
+                </div>
+                <div class="col">
+                    202101
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h6><b>TOTALES:</b></h6>
+            <div class="row renglonRet">
+                <div class="col">
+                    SALDO AP/AF
+                </div>
+                <div class="col">
+                    <input value=200.00 type="number" style="width: 100px; height: 20px;">
+                </div>
+                <div class="col" style="color: rgba(104, 104, 104, 0.836); font-size: medium;">
+                    <i class="pi pi-minus botonRetencion" style="color: rgba(211, 17, 17, 0.87);"></i>
+                    <i class="pi pi-plus botonRetencion"></i>
+                </div>
+            </div>
+            <div class="row renglonRet">
+                <div class="col">
+                    10%
+                </div>
+                <div class="col">
+                    <input value=20.00 type="number" style="width: 100px; height: 20px;">
+                </div>
+                <div class="col" style="color: rgba(104, 104, 104, 0.836); font-size: medium;">
+                    <i class="pi pi-minus botonRetencion" style="color: rgba(211, 17, 17, 0.87);"></i>
+                    <i class="pi pi-plus botonRetencion"></i>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <b>TOTAL</b>
+                </div>
+                <div class="col">
+                    <b>220.00</b>
+                </div>
+            </div>
+        </div>
+
     </p-accordionTab>
     <p-accordionTab header="Archivos" [selected]="true">
+        <p-fileUpload name="demo" url="http://localhost:3000/subir" (onUpload)="onUpload($event)" [multiple]="false">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template>
+            </p-fileUpload>
+    </p-accordionTab>
+    <p-accordionTab header="Detalle" [selected]="false">
         -...
         <br>
         -...
@@ -184,7 +316,7 @@
         <br>
         -...
     </p-accordionTab>
-    <p-accordionTab header="Detalle" [selected]="true">
+    <p-accordionTab header="Detalles" [selected]="false">
         -...
         <br>
         -...
@@ -193,7 +325,7 @@
         <br>
         -...
     </p-accordionTab>
-    <p-accordionTab header="Opciones detalle" [selected]="true">
+    <p-accordionTab header="Opciones detalle" [selected]="false">
         -...
         <br>
         -...
@@ -202,30 +334,28 @@
         <br>
         -...
     </p-accordionTab>
-
-    <textarea id="observacionesCliente" pInputTextarea [(ngModel)]="observacionesCliente"></textarea>
-
 </p-accordion>
 
+<textarea id="observacionesCliente" pInputTextarea [(ngModel)]="observacionesLiquidacion"></textarea>
 
-
-
-<ul>
-    <li><a [routerLink]="['/cargaLiquidacion', 1, 'a']">1a</a></li>
-    <li><a [routerLink]="['/cargaLiquidacion', 2, 'b']">2b</a></li>
-    <li><a [routerLink]="['/cargaLiquidacion', 3, 'c']">3c</a></li>
-</ul>
-<ul>
-    <li><a href="/cargaLiquidacion/1/a">1a</a></li>
-    <li><a href="/cargaLiquidacion/2/b">2b</a></li>
-    <li><a href="/cargaLiquidacion/3/c">3c</a></li>
-</ul>
-
-<ul>
-    <li>
-        Cliente: {{idCliente}}
-    </li>
-    <li>
-        Periodo: {{idPeriodo}}
-    </li>
-</ul>
+<div style="display: none">
+    <ul>
+        <li><a [routerLink]="['/cargaLiquidacion', 1, 'a']">1a</a></li>
+        <li><a [routerLink]="['/cargaLiquidacion', 2, 'b']">2b</a></li>
+        <li><a [routerLink]="['/cargaLiquidacion', 3, 'c']">3c</a></li>
+    </ul>
+    <ul>
+        <li><a href="/cargaLiquidacion/1/a">1a</a></li>
+        <li><a href="/cargaLiquidacion/2/b">2b</a></li>
+        <li><a href="/cargaLiquidacion/3/c">3c</a></li>
+    </ul>
+    
+    <ul>
+        <li>
+            Cliente: {{idCliente}}
+        </li>
+        <li>
+            Periodo: {{idPeriodo}}
+        </li>
+    </ul>
+</div>

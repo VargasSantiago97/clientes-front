@@ -25,6 +25,25 @@
     border-radius: 6px;
     width: 80%;
     color: rgb(74, 153, 255);
+    cursor: pointer;
+}
+
+.renglonRet {
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: rgb(204, 200, 200);
+}
+.botonRetencion {
+    text-align: center;
+    font-size: 12px;
+    padding: 2px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    width: 20px;
+    color: rgb(74, 153, 255);
+    cursor: pointer;
 }
 
 #observacionesCliente {
