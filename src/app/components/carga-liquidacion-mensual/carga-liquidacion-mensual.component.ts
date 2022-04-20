@@ -43,7 +43,7 @@ export class CargaLiquidacionMensualComponent implements OnInit {
       cuitGuion : '20-40500364-4'
     }
 
-    this.observacionesCliente = '...';
+    this.observacionesCliente = '...\n...\n...';
 
     this.fecha = new Date('Wed Apr 15 2022 01:02:36 GMT-0300');
     console.log(this.fecha)
