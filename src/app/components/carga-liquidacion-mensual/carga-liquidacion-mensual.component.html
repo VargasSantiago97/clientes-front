@@ -17,6 +17,7 @@
 
 <hr class="quitarMargenes">
 
+<br>
 <div class="centrar">
     <p-calendar [(ngModel)]="fecha" dateFormat="dd/mm/y"></p-calendar>
 </div>
@@ -298,45 +299,62 @@
         </div>
 
     </p-accordionTab>
-    <p-accordionTab header="Archivos" [selected]="true">
+    <p-accordionTab header="Archivos" [selected]="false">
         <p-fileUpload name="demo" url="http://localhost:3000/subir" (onUpload)="onUpload($event)" [multiple]="false">
             <ng-template pTemplate="content">
+                <h6><b>MONOTRIBUTO VEP:</b></h6>
                 <ul *ngIf="uploadedFiles.length">
                     <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
                 </ul>
             </ng-template>
-            </p-fileUpload>
+        </p-fileUpload>
+        <br>
+        <p-fileUpload name="demo" url="http://localhost:3000/subir" (onUpload)="onUpload($event)" [multiple]="false">
+            <ng-template pTemplate="content">
+                <h6><b>MONOTRIBUTO CPTE PAGO:</b></h6>
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+        <br>
+        <p-fileUpload name="demo" url="http://localhost:3000/subir" (onUpload)="onUpload($event)" [multiple]="false">
+            <ng-template pTemplate="content">
+                <h6><b>DDJJ IIBB:</b></h6>
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+        <br>
+        <p-fileUpload name="demo" url="http://localhost:3000/subir" (onUpload)="onUpload($event)" [multiple]="false">
+            <ng-template pTemplate="content">
+                <h6><b>DDJJ IIBB ACUSE:</b></h6>
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
     </p-accordionTab>
-    <p-accordionTab header="Detalle" [selected]="false">
-        -...
-        <br>
-        -...
-        <br>
-        -...
-        <br>
-        -...
-    </p-accordionTab>
-    <p-accordionTab header="Detalles" [selected]="false">
-        -...
-        <br>
-        -...
-        <br>
-        -...
-        <br>
-        -...
-    </p-accordionTab>
-    <p-accordionTab header="Opciones detalle" [selected]="false">
-        -...
-        <br>
-        -...
-        <br>
-        -...
-        <br>
-        -...
-    </p-accordionTab>
+
 </p-accordion>
 
 <textarea id="observacionesCliente" pInputTextarea [(ngModel)]="observacionesLiquidacion"></textarea>
+
+<div class="centrar">
+    <button pButton type="button" label="VOLVER" class="botonGrande p-button-danger"></button>
+    <button pButton type="button" label="GUARDAR" class="botonGrande p-button-info"></button>
+    <button pButton type="button" label="DETALLES" class="botonGrande p-button-success"></button>
+</div>
+
+
+
+
+
+
+
+
+
 
 <div style="display: none">
     <ul>

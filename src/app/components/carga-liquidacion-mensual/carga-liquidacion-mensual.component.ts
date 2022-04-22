@@ -29,7 +29,7 @@ export class CargaLiquidacionMensualComponent implements OnInit {
 
   totalFacturacion: number = 0;
 
-  uploadedFiles: any[] = [];
+  uploadedFiles: any[] = [{name: 'previo', size:'10'}];
 
   constructor(private route: ActivatedRoute) {
 

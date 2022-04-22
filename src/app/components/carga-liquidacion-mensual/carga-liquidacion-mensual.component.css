@@ -11,6 +11,9 @@
     padding: 0px 15px;
     font-size: small;
 }
+.botonGrande {
+    margin: 5px;
+}
 
 .centrar {
     text-align: center;
