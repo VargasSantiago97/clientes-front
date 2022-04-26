@@ -61,7 +61,7 @@
         </div>
         <div class="row">
             <div class="col">
-              -O. Social:
+              -O. Social: (2)
             </div>
             <div class="col">
               $5.215
@@ -300,7 +300,7 @@
 
     </p-accordionTab>
     <p-accordionTab header="Archivos" [selected]="false">
-        <p-fileUpload name="demo" url="http://localhost:3000/subir" (onUpload)="onUpload($event)" [multiple]="false">
+        <p-fileUpload name="demo" url="http://localhost:3000/subir" (onUpload)="onUpload($event)" [multiple]="false" [auto]="true">
             <ng-template pTemplate="content">
                 <h6><b>MONOTRIBUTO VEP:</b></h6>
                 <ul *ngIf="uploadedFiles.length">
@@ -346,11 +346,6 @@
     <button pButton type="button" label="GUARDAR" class="botonGrande p-button-info"></button>
     <button pButton type="button" label="DETALLES" class="botonGrande p-button-success"></button>
 </div>
-
-
-
-
-
 
 
 

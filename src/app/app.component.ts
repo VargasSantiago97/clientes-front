@@ -9,7 +9,10 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent {
   constructor(private primengConfig: PrimeNGConfig) {}
 
+  date : any;
+
   ngOnInit() {
       this.primengConfig.ripple = true;
+      this.date = "23/04/2022 23:39:32";
   }
 }
