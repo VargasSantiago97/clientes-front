@@ -17,6 +17,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CalendarModule} from 'primeng/calendar';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {FileUploadModule} from 'primeng/fileupload';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {FileUploadModule} from 'primeng/fileupload';
     InputTextareaModule,
     CalendarModule,
     InputNumberModule,
-    FileUploadModule
+    FileUploadModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

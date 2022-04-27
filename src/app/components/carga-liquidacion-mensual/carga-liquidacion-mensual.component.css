@@ -22,13 +22,14 @@
 .agregarRetencion {
     text-align: center;
     font-size: 12px;
-    padding: 2px;
+    padding: 3px;
     border: solid;
     border-width: 1px;
     border-radius: 6px;
     width: 80%;
     color: rgb(74, 153, 255);
     cursor: pointer;
+    margin: 10px;
 }
 
 .renglonRet {

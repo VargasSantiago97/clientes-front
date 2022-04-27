@@ -1,25 +1,25 @@
 
 <!-- DATOS PRINCIPALES DEL CLIENTE EN CABEZA -->
-<h5 class="quitarMargenes tAC">{{aliasCliente}}</h5>
+<h5 class="quitarMargenes tAC">{{datosPrincipalesCliente.alias}}</h5>
 <hr class="quitarMargenes">
-<h6 class="quitarMargenes tAC">{{cuitCliente}}</h6>
+<h6 class="quitarMargenes tAC">{{datosPrincipalesCliente.cuit}}</h6>
 
 
 <!-- COPIAR CUIT Y CONTRASEÑAS -->
+
+<hr class="quitarMargenes">
+
 <div class="centrar">
-    <button (click)="copiarAlPortapapeles('cuit')" (dblclick)="copiarAlPortapapeles('cuitGuion')" pButton type="button" label="CUIT" class="miniBoton p-button-warning"></button>
-    <button (click)="copiarAlPortapapeles('afip')" pButton type="button" label="AFIP" class="miniBoton p-button-primary"></button>
-    <button (click)="copiarAlPortapapeles('atp')" pButton type="button" label="ATP" class="miniBoton p-button-success"></button>
+    <button *ngFor="let botonCopiar of botonesCopiar" (click)="copiarAlPortapapeles(botonCopiar.click)" (dblclick)="copiarAlPortapapeles(botonCopiar.dblclick)" pButton type="button" label={{botonCopiar.alias}} class="miniBoton p-button-{{botonCopiar.color}}"></button>
 </div>
 
-
-<textarea id="observacionesCliente" pInputTextarea [autoResize]="true" [(ngModel)]="observacionesCliente"></textarea>
+<textarea id="observacionesCliente" pInputTextarea [autoResize]="true" [(ngModel)]="datosPrincipalesCliente.observacionesDetalle"></textarea>
 
 <hr class="quitarMargenes">
 
 <br>
 <div class="centrar">
-    <p-calendar [(ngModel)]="fecha" dateFormat="dd/mm/y"></p-calendar>
+    <p-calendar [(ngModel)]="datosLiquidacion.fecha" dateFormat="dd/mm/y"></p-calendar>
 </div>
 <br>
 
@@ -31,7 +31,7 @@
               -Categoria:
             </div>
             <div class="col">
-              <b>A</b>
+              <b>{{datosLiquidacion.monotributo.categoria}}</b>
             </div>
         </div>
         <div class="row" (click)="copiarAlPortapapeles('CUR')">
@@ -39,7 +39,7 @@
               -CUR:
             </div>
             <div class="col">
-              <b>123123</b>
+              <b>{{datosLiquidacion.monotributo.cur}}</b>
             </div>
         </div>
         <hr>
@@ -48,7 +48,7 @@
               -Impuesto:
             </div>
             <div class="col">
-              $5.215
+              {{formatoMoneda(datosLiquidacion.monotributo.impuesto)}}
             </div>
         </div>
         <div class="row">
@@ -56,15 +56,15 @@
               -SIPA:
             </div>
             <div class="col">
-              $5.215
+                {{formatoMoneda(datosLiquidacion.monotributo.sipa)}}
             </div>
         </div>
         <div class="row">
             <div class="col">
-              -O. Social: (2)
+              -O. Social: ({{datosLiquidacion.monotributo.adherentes}})
             </div>
             <div class="col">
-              $5.215
+                {{formatoMoneda(datosLiquidacion.monotributo.obraSocial)}}
             </div>
         </div>
         <div class="row">
@@ -72,7 +72,7 @@
               TOTAL
             </div>
             <div class="col">
-              <b>$5.215</b>
+              <b>{{formatoMoneda(datosLiquidacion.monotributo.total)}}</b>
             </div>
         </div>
         <br>
@@ -81,67 +81,35 @@
         </div>
     </p-accordionTab>
     <p-accordionTab header="Facturacion" [selected]="false">
-        <div class="row">
-            <div class="col">
-              -Act 1:
+        <div class="row" *ngFor="let actividad of datosLiquidacion.actividades">
+            <div class="col" title="{{actividad.descripcion + ' - (' + actividad.codigo + ')'}}">
+              -{{actividad.alias}}
             </div>
             <div class="col">
-                <p-inputNumber (ngModelChange)="calcularFacturacionTotal()" [(ngModel)]="facturacionAct1" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
+                <p-inputNumber (ngModelChange)="calcularFacturacionTotal()" [(ngModel)]="actividad.monto" inputId="currency-us" mode="currency" currency="ARS" locale="es-AR">
                 </p-inputNumber>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-              -Act 2:
-            </div>
-            <div class="col">
-                <p-inputNumber (ngModelChange)="calcularFacturacionTotal()" [(ngModel)]="facturacionAct2" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
-                </p-inputNumber>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-              -Act 3:
-            </div>
-            <div class="col">
-                <p-inputNumber (ngModelChange)="calcularFacturacionTotal()" [(ngModel)]="facturacionAct3" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
-                </p-inputNumber>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col">
               <b>-TOTAL:</b>
             </div>
             <div class="col">
-                <p-inputNumber [ngModel]="totalFacturacion" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
+                <p-inputNumber [(ngModel)]="datosLiquidacion.facturacion" inputId="currency-us" mode="currency" currency="ARS" locale="es-AR">
                 </p-inputNumber>
             </div>
         </div>
+
         <hr>
         <p style="color: rgb(119, 119, 119);">Periodo anterior:</p>
 
-        <div class="row">
-          <div class="col">
-            -Act 1:
+        <div class="row" *ngFor="let actividad of datosLiquidacionAnterior.actividades">
+          <div class="col" title="{{actividad.descripcion + ' - (' + actividad.codigo + ')'}}">
+            -{{actividad.alias}}
           </div>
           <div class="col">
-            $0.00
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            -Act 2:
-          </div>
-          <div class="col">
-            $0.00
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            -Act 3:
-          </div>
-          <div class="col">
-            $0.00
+            {{formatoMoneda(actividad.monto)}}
           </div>
         </div>
         <div class="row">
@@ -149,11 +117,11 @@
               <b>-TOTAL:</b>
             </div>
             <div class="col">
-              <b>$0.00</b>
+              <b>{{formatoMoneda(datosLiquidacionAnterior.facturacion)}}</b>
             </div>
           </div>
     </p-accordionTab>
-    <p-accordionTab header="Retenciones" [selected]="false">
+    <p-accordionTab header="Retenciones" [selected]="true">
             <div>
                 <h6><b>SIRCREB: $5.55</b></h6>
                 <div class="row renglonRet">
@@ -183,19 +151,15 @@
                     </div>
                 </div>
                 <div class="centrar">
-                  <i (click)="agregarRet()" class="pi pi-plus agregarRetencion"></i>
+                  <i (click)="showModalDialog()" class="pi pi-plus agregarRetencion"></i>
                 </div>
               </div>
               <hr>
-          <h6>SIRCAR:</h6>
-        <hr>
-        <h6>SIRTAC RET.:</h6>
-        <hr>
-        <h6>SIRTAC PER.:</h6>
-        <hr>
-        <h6>ATP RET.:</h6>
-        <hr>
-        <h6>ATP PER.:</h6>
+
+
+        <div class="centrar">
+            <button pButton type="button" label="VER ANTERIORES" class="p-button-outlined p-button-secondary"></button>
+        </div>
     </p-accordionTab>
     <p-accordionTab header="ATP DDJJ IIBB" [selected]="false">
         <div>
@@ -339,10 +303,10 @@
 
 </p-accordion>
 
-<textarea id="observacionesCliente" pInputTextarea [(ngModel)]="observacionesLiquidacion"></textarea>
+<textarea id="observacionesCliente" pInputTextarea [(ngModel)]="datosPrincipalesCliente.observacionesDetalle"></textarea>
 
 <div class="centrar">
-    <button pButton type="button" label="VOLVER" class="botonGrande p-button-danger"></button>
+    <button (click)="calcularFacturacionTotal()" pButton type="button" label="VOLVER" class="botonGrande p-button-danger"></button>
     <button pButton type="button" label="GUARDAR" class="botonGrande p-button-info"></button>
     <button pButton type="button" label="DETALLES" class="botonGrande p-button-success"></button>
 </div>
@@ -372,3 +336,21 @@
         </li>
     </ul>
 </div>
+
+
+
+
+
+<p-dialog header="Agregar agente retencion" [(visible)]="displayModalRetencion" [modal]="true" [style]="{width: '98%'}" [draggable]="false" [resizable]="false">
+    <p-accordion [multiple]="false">
+        <p-accordionTab *ngFor="let tipoRetencion of tiposRetenciones" title="{{tipoRetencion.descripcion}}" header="{{tipoRetencion.alias}}" [selected]="false">
+    
+        </p-accordionTab>
+    </p-accordion>
+
+        
+
+    <ng-template pTemplate="footer">
+        <p-button (click)="displayModalRetencion=false" label="Cerrar" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
