@@ -343,9 +343,20 @@
 
 <p-dialog header="Agregar agente retencion" [(visible)]="displayModalRetencion" [modal]="true" [style]="{width: '98%'}" [draggable]="false" [resizable]="false">
     <p-accordion [multiple]="false">
-        <p-accordionTab *ngFor="let tipoRetencion of tiposRetenciones" title="{{tipoRetencion.descripcion}}" header="{{tipoRetencion.alias}}" [selected]="false">
-    
+        <p-accordionTab *ngFor="let tipoRetencion of agentesEnTipos" title="{{tipoRetencion.descripcion}}" header="{{tipoRetencion.alias}}" id="{{tipoRetencion.id}}" [selected]="false">
+            <div *ngFor="let agente of tipoRetencion.agentes">
+                <div class="botonSeleccionarRetencion">
+                    {{agente.razonSocial}} - {{agente.cuit}}
+                </div>
+            </div>
         </p-accordionTab>
+        <p-listbox [options]="groupedCities" [group]="true" [(ngModel)]="selectedCountries" [metaKeySelection]="false" [filter]="true" [multiple]="true" [listStyle]="{'max-height':'250px'}" [style]="{'width':'15rem'}">
+            <ng-template let-group pTemplate="group">
+                <div class="flex align-items-center">
+                    <span (click)="slog()">{{group.label}}</span>
+                </div>
+            </ng-template>
+        </p-listbox>
     </p-accordion>
 
         

@@ -24,12 +24,15 @@ export class CargaLiquidacionMensualComponent implements OnInit {
   tiposRetenciones : any;
   agentesRetencion : any;
 
-  agentesEnTipos : any;
+  agentesEnTipos : any = [];
 
 
-  displayModalRetencion: boolean = false;
+  displayModalRetencion: boolean = true;
 
   uploadedFiles: any[] = [{name: 'previo', size:'10'}];
+
+  groupedCities : any;
+  selectedCountries : any;
 
   constructor(private route: ActivatedRoute) {
 
@@ -42,8 +45,6 @@ export class CargaLiquidacionMensualComponent implements OnInit {
     });
 
 
-    this.calcularFacturacionTotal();
-
     this.buscarDatosPrincipalesCliente();
     this.buscarBotonesCopiar();
     this.buscarDatosLiquidacion();
@@ -54,6 +55,36 @@ export class CargaLiquidacionMensualComponent implements OnInit {
     this.buscarAgentesRetencion();
 
     this.insertarAgentesEnTipos();
+
+    this.groupedCities = [
+      {
+          label: 'Germany', value: 'de', 
+          items: [
+              {label: 'Berlin', value: 'Berlin'},
+              {label: 'Frankfurt', value: 'Frankfurt'},
+              {label: 'Hamburg', value: 'Hamburg'},
+              {label: 'Munich', value: 'Munich'}
+          ]
+      },
+      {
+          label: 'USA', value: 'us', 
+          items: [
+              {label: 'Chicago', value: 'Chicago'},
+              {label: 'Los Angeles', value: 'Los Angeles'},
+              {label: 'New York', value: 'New York'},
+              {label: 'San Francisco', value: 'San Francisco'}
+          ]
+      },
+      {
+          label: 'Japan', value: 'jp', 
+          items: [
+              {label: 'Kyoto', value: 'Kyoto'},
+              {label: 'Osaka', value: 'Osaka'},
+              {label: 'Tokyo', value: 'Tokyo'},
+              {label: 'Yokohama', value: 'Yokohama'}
+          ]
+      }
+  ];
 
 
   }
@@ -258,23 +289,23 @@ export class CargaLiquidacionMensualComponent implements OnInit {
   }
 
   insertarAgentesEnTipos(){
+    //ASIGNAMOS A LA VARIABLE agentesEnTipos CADA TIPO DE RETENCION, Y DENTRO LOS AGENTES QUE TRABAJAN CON ESTE TIPO DE RET.
 
-    this.tiposRetenciones.map((e:any)=>{
-      this.agentesEnTipos
-    })
+    this.tiposRetenciones.map((e:any, pos: any)=>{
+      e['agentes'] = []
 
-    this.agentesRetencion.map((e:any)=>{
-      let idTipo = e.tipoRetencion;
-
-      this.tiposRetenciones.find((el:any)=>{
-        if(el.id == idTipo){
-          el = 2;
+      this.agentesRetencion.map((ent:any) => {
+        if(ent.tipoRetencion == e.id){
+          e['agentes'].push(ent);
         }
       })
 
-      
-
+      this.agentesEnTipos.push(e);
     })
+
+
+
+
   }
 
 
@@ -299,7 +330,7 @@ export class CargaLiquidacionMensualComponent implements OnInit {
 
   //OTROS
   calcularFacturacionTotal(){
-    console.log(this.tiposRetenciones)
+    console.log(this.agentesEnTipos)
   }
 
   agregarRet(){
@@ -347,4 +378,7 @@ export class CargaLiquidacionMensualComponent implements OnInit {
   }
 
 
+  slog(){
+    console.log('sasd')
+  }
 }

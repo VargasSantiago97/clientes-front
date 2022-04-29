@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
 import { CargaLiquidacionMensualComponent } from './components/carga-liquidacion-mensual/carga-liquidacion-mensual.component';
-
+import {ListboxModule} from 'primeng/listbox';
 
 //PRIME-NG
 import {ButtonModule} from 'primeng/button';
@@ -40,7 +40,8 @@ import {DialogModule} from 'primeng/dialog';
     CalendarModule,
     InputNumberModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    ListboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
