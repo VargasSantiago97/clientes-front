@@ -274,14 +274,38 @@ export class CargaLiquidacionMensualComponent implements OnInit {
     let idTipo = idd;
     let idAgente = this.selectedAgente.id;
 
+    let retencionEcontrada = false;
+
     //cargar en tipo de retencion, y crearla si no existe
     this.datosLiquidacion.retenciones.map((e:any)=>{
-      if(e.id==idTipo){
+      if(e.idTipo==idTipo){
 
+        retencionEcontrada = true;
+
+        e.retenciones.push({
+          id: 0,
+          idAgente: idAgente,
+          monto: 0
+        })
       }
     })
 
+    if(!retencionEcontrada){
+      this.datosLiquidacion.retenciones.push(
+        {
+          id : 0,
+          idTipo: idTipo,
+          retenciones: [{
+            id: 0,
+            idAgente: idAgente,
+            monto: 0
+          }]
+        },
+      );
+    }
+
     this.displayModalRetencion = false;
+
 
   }
 

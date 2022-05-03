@@ -135,6 +135,7 @@
                         <i (click)="eliminarRetencion(tipoRetencion.id, retencion.id)" class="pi pi-trash botonRetencion" style="color: rgba(211, 17, 17, 0.87)"></i>
                     </div>
                 </div>
+                <br><br>
             </div>
             <div>
                 <div class="centrar">
@@ -343,7 +344,7 @@
     <div>
         <button
             *ngFor="let tipoRetencion of tiposRetenciones"
-            (click)="agregarRetencion(tipoRetencion)"
+            (click)="agregarRetencion(tipoRetencion.id)"
             pButton 
             pRipple 
             type="button" 
