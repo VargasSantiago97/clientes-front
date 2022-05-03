@@ -27,12 +27,12 @@ export class CargaLiquidacionMensualComponent implements OnInit {
   agentesEnTipos : any = [];
 
 
-  displayModalRetencion: boolean = true;
+  displayModalRetencion: boolean = false;
 
   uploadedFiles: any[] = [{name: 'previo', size:'10'}];
 
-  groupedCities : any;
-  selectedCountries : any;
+
+  selectedAgente : any = [];
 
   constructor(private route: ActivatedRoute) {
 
@@ -55,37 +55,6 @@ export class CargaLiquidacionMensualComponent implements OnInit {
     this.buscarAgentesRetencion();
 
     this.insertarAgentesEnTipos();
-
-    this.groupedCities = [
-      {
-          label: 'Germany', value: 'de', 
-          items: [
-              {label: 'Berlin', value: 'Berlin'},
-              {label: 'Frankfurt', value: 'Frankfurt'},
-              {label: 'Hamburg', value: 'Hamburg'},
-              {label: 'Munich', value: 'Munich'}
-          ]
-      },
-      {
-          label: 'USA', value: 'us', 
-          items: [
-              {label: 'Chicago', value: 'Chicago'},
-              {label: 'Los Angeles', value: 'Los Angeles'},
-              {label: 'New York', value: 'New York'},
-              {label: 'San Francisco', value: 'San Francisco'}
-          ]
-      },
-      {
-          label: 'Japan', value: 'jp', 
-          items: [
-              {label: 'Kyoto', value: 'Kyoto'},
-              {label: 'Osaka', value: 'Osaka'},
-              {label: 'Tokyo', value: 'Tokyo'},
-              {label: 'Yokohama', value: 'Yokohama'}
-          ]
-      }
-  ];
-
 
   }
 
@@ -149,7 +118,35 @@ export class CargaLiquidacionMensualComponent implements OnInit {
       retenciones : [
         {
           id : 1,
-          idAgente : 1,
+          idTipo: 1,
+          retenciones: [
+            {
+              id: 1,
+              idAgente: 1,
+              monto: 1000
+            },
+            {
+              id: 2,
+              idAgente: 2,
+              monto: 2000
+            }
+          ]
+        },
+        {
+          id : 2,
+          idTipo: 5,
+          retenciones: [
+            {
+              id: 3,
+              idAgente: 2,
+              monto: 1002
+            },
+            {
+              id: 4,
+              idAgente: 3,
+              monto: 2002
+            }
+          ]
         },
       ]
     }
@@ -221,77 +218,42 @@ export class CargaLiquidacionMensualComponent implements OnInit {
 
   }
   buscarAgentesRetencion(){
+
     this.agentesRetencion = [
       {
+        name: 'Nuevo Banco del Chaco - NBCH - 20405003644',
+        code: 1, 
+        cuit: 20405003644,
+
         id : 1,
         alias : 'NBCH',
-        razonSocial : 'Nuevo Banco del Chaco S.A.',
-        cuit : 30670157799,
-        tipoRetencion : 1
+        razonSocial : 'Nuevo Banco del Chaco',
       },
       {
+        name: 'Banco Nacion Argentina - BNA - 20405003644',
+        code: 2, 
+        cuit: 20405003644,
+
         id : 2,
-        alias : 'NBCH',
-        razonSocial : 'Nuevo Banco del Chaco S.A.',
-        cuit : 30670157799,
-        tipoRetencion : 2
-      },
-      {
-        id : 3,
         alias : 'BNA',
         razonSocial : 'Banco Nacion Argentina',
-        cuit : 30500010912,
-        tipoRetencion : 1
       },
       {
-        id : 4,
+        name: 'Otra RZ - Otra - 20405003644',
+        code: 3, 
+        cuit: 20405003644,
+
+        id : 3,
         alias : 'Otra',
-        razonSocial : 'Otra',
-        cuit : 1,
-        tipoRetencion : 1
-      },
-      {
-        id : 5,
-        alias : 'Otra',
-        razonSocial : 'Otra',
-        cuit : 1,
-        tipoRetencion : 2
-      },
-      {
-        id : 6,
-        alias : 'Otra',
-        razonSocial : 'Otra',
-        cuit : 1,
-        tipoRetencion : 3
-      },
-      {
-        id : 7,
-        alias : 'Otra',
-        razonSocial : 'Otra',
-        cuit : 1,
-        tipoRetencion : 4
-      },
-      {
-        id : 8,
-        alias : 'Otra',
-        razonSocial : 'Otra',
-        cuit : 1,
-        tipoRetencion : 5
-      },
-      {
-        id : 9,
-        alias : 'Otra',
-        razonSocial : 'Otra',
-        cuit : 1,
-        tipoRetencion : 6
+        razonSocial : 'Otra RZ',
       }
-    ]
+    ];
   }
 
   insertarAgentesEnTipos(){
     //ASIGNAMOS A LA VARIABLE agentesEnTipos CADA TIPO DE RETENCION, Y DENTRO LOS AGENTES QUE TRABAJAN CON ESTE TIPO DE RET.
 
-    this.tiposRetenciones.map((e:any, pos: any)=>{
+/*     this.tiposRetenciones.map((e:any, pos: any)=>{
       e['agentes'] = []
 
       this.agentesRetencion.map((ent:any) => {
@@ -302,12 +264,58 @@ export class CargaLiquidacionMensualComponent implements OnInit {
 
       this.agentesEnTipos.push(e);
     })
-
+ */
 
 
 
   }
 
+  agregarRetencion(idd:any){
+    let idTipo = idd;
+    let idAgente = this.selectedAgente.id;
+
+    //cargar en tipo de retencion, y crearla si no existe
+    this.datosLiquidacion.retenciones.map((e:any)=>{
+      if(e.id==idTipo){
+
+      }
+    })
+
+    this.displayModalRetencion = false;
+
+  }
+
+  eliminarRetencion(idTipo:any, idAgente:any){
+    this.datosLiquidacion.retenciones.map((e:any)=>{
+      if(e.id==idTipo){
+        e.retenciones.map((f:any, pos:number)=>{
+          if(f.id==idAgente){
+            e.retenciones.splice(pos, 1);
+          }
+        })
+      }
+    })
+  }
+
+
+  obtenerAliasAgente(idd:any){
+    let aliasDevolver = 'No-Alias';
+    this.agentesRetencion.map((e:any) => {
+      if(e.id==parseInt(idd) ){
+        aliasDevolver = e.alias;
+      }
+    })
+    return aliasDevolver;
+  }
+  obtenerAliasTipo(idd:any){
+    let aliasDevolver = 'No-Alias';
+    this.tiposRetenciones.map((e:any) => {
+      if(e.id==parseInt(idd) ){
+        aliasDevolver = e.alias;
+      }
+    })
+    return aliasDevolver;
+  }
 
 
 
@@ -334,7 +342,7 @@ export class CargaLiquidacionMensualComponent implements OnInit {
   }
 
   agregarRet(){
-    alert('Agregar ret');
+    console.log(this.datosLiquidacion)
   }
 
   onUpload(event:any) {
@@ -343,7 +351,8 @@ export class CargaLiquidacionMensualComponent implements OnInit {
     }
   }
 
-  showModalDialog(){
+  showModalRetencionDialog(){
+    this.selectedAgente = [];
     this.displayModalRetencion = true;
   }
 

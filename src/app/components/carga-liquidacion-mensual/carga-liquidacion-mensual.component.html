@@ -122,43 +122,30 @@
           </div>
     </p-accordionTab>
     <p-accordionTab header="Retenciones" [selected]="true">
+            <div *ngFor="let tipoRetencion of datosLiquidacion.retenciones">
+                <h6><b>{{obtenerAliasTipo(tipoRetencion.idTipo)}}: $TOTAL_{{obtenerAliasTipo(tipoRetencion.idTipo)}}</b></h6>
+                <div *ngFor="let retencion of tipoRetencion.retenciones" class="row renglonRet">
+                    <div class="col">
+                        {{obtenerAliasAgente(retencion.idAgente)}}
+                    </div>
+                    <div class="col">
+                        <input type="number" style="width: 100px; height: 20px;" [(ngModel)]="retencion.monto">
+                    </div>
+                    <div class="col" style="color: rgba(104, 104, 104, 0.836); font-size: medium;">
+                        <i (click)="eliminarRetencion(tipoRetencion.id, retencion.id)" class="pi pi-trash botonRetencion" style="color: rgba(211, 17, 17, 0.87)"></i>
+                    </div>
+                </div>
+            </div>
             <div>
-                <h6><b>SIRCREB: $5.55</b></h6>
-                <div class="row renglonRet">
-                    <div class="col">
-                        BNA
-                    </div>
-                    <div class="col">
-                        <input type="number" style="width: 100px; height: 20px;">
-                    </div>
-                    <div class="col" style="color: rgba(104, 104, 104, 0.836); font-size: medium;">
-                        $500.00
-                        <i (click)="agregarRet()" class="pi pi-trash botonRetencion" style="color: rgba(211, 17, 17, 0.87);"></i>
-                        <i (click)="agregarRet()" class="pi pi-pencil botonRetencion"></i>
-                    </div>
-                </div>
-                <div class="row renglonRet">
-                    <div class="col">
-                        NBCH
-                    </div>
-                    <div class="col">
-                        <input type="number" style="width: 100px; height: 20px;">
-                    </div>
-                    <div class="col" style="color: rgba(104, 104, 104, 0.836); font-size: medium;">
-                        $500.00
-                        <i (click)="agregarRet()" class="pi pi-trash botonRetencion" style="color: rgba(211, 17, 17, 0.87);"></i>
-                        <i (click)="agregarRet()" class="pi pi-pencil botonRetencion"></i>
-                    </div>
-                </div>
                 <div class="centrar">
-                  <i (click)="showModalDialog()" class="pi pi-plus agregarRetencion"></i>
+                  <i (click)="showModalRetencionDialog()" class="pi pi-plus agregarRetencion"></i>
                 </div>
-              </div>
-              <hr>
+            </div>
+             <hr>
 
 
         <div class="centrar">
-            <button pButton type="button" label="VER ANTERIORES" class="p-button-outlined p-button-secondary"></button>
+            <button (click)="agregarRet()" pButton type="button" label="VER ANTERIORES" class="p-button-outlined p-button-secondary"></button>
         </div>
     </p-accordionTab>
     <p-accordionTab header="ATP DDJJ IIBB" [selected]="false">
@@ -342,24 +329,29 @@
 
 
 <p-dialog header="Agregar agente retencion" [(visible)]="displayModalRetencion" [modal]="true" [style]="{width: '98%'}" [draggable]="false" [resizable]="false">
-    <p-accordion [multiple]="false">
-        <p-accordionTab *ngFor="let tipoRetencion of agentesEnTipos" title="{{tipoRetencion.descripcion}}" header="{{tipoRetencion.alias}}" id="{{tipoRetencion.id}}" [selected]="false">
-            <div *ngFor="let agente of tipoRetencion.agentes">
-                <div class="botonSeleccionarRetencion">
-                    {{agente.razonSocial}} - {{agente.cuit}}
-                </div>
+    
+    <p-listbox [options]="agentesRetencion" [(ngModel)]="selectedAgente" [metaKeySelection]="false" [checkbox]="false" [filter]="true" [multiple]="false" optionLabel="name" [listStyle]="{'max-height':'250px'}" [style]="{'width':'100%'}">
+        <ng-template let-country pTemplate="item">
+            <div class="country-item">
+                <div>{{country.name}}</div>
             </div>
-        </p-accordionTab>
-        <p-listbox [options]="groupedCities" [group]="true" [(ngModel)]="selectedCountries" [metaKeySelection]="false" [filter]="true" [multiple]="true" [listStyle]="{'max-height':'250px'}" [style]="{'width':'15rem'}">
-            <ng-template let-group pTemplate="group">
-                <div class="flex align-items-center">
-                    <span (click)="slog()">{{group.label}}</span>
-                </div>
-            </ng-template>
-        </p-listbox>
-    </p-accordion>
+        </ng-template>
+    </p-listbox>
 
-        
+    <hr>
+
+    <div>
+        <button
+            *ngFor="let tipoRetencion of tiposRetenciones"
+            (click)="agregarRetencion(tipoRetencion)"
+            pButton 
+            pRipple 
+            type="button" 
+            label="{{tipoRetencion.alias}}" 
+            class="p-button-outlined"
+            style="margin: 3px;">
+        </button>
+    </div>
 
     <ng-template pTemplate="footer">
         <p-button (click)="displayModalRetencion=false" label="Cerrar" styleClass="p-button-text"></p-button>
