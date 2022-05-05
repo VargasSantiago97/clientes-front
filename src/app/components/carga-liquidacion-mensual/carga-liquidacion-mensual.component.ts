@@ -372,6 +372,7 @@ export class CargaLiquidacionMensualComponent implements OnInit {
   onUpload(event:any) {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
+        console.log(file);
     }
   }
 

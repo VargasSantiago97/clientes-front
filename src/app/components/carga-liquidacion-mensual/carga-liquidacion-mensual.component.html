@@ -252,7 +252,7 @@
 
     </p-accordionTab>
     <p-accordionTab header="Archivos" [selected]="false">
-        <p-fileUpload name="demo" url="http://localhost:3000/subir" (onUpload)="onUpload($event)" [multiple]="false" [auto]="true">
+        <p-fileUpload name="demo" url="http://localhost:3000/api/subidas/liquidaciones/vep/mensaje" (onUpload)="onUpload($event)" [multiple]="false" [auto]="true">
             <ng-template pTemplate="content">
                 <h6><b>MONOTRIBUTO VEP:</b></h6>
                 <ul *ngIf="uploadedFiles.length">
